@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple JS Mix It Up Example by Sangwin</title>
+    <style>
+        .items-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .mix {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .filter-btn {
+            margin: 5px;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Your filter buttons -->
+        <div>
+            <button class="filter-btn" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="purple">Category 1</button>
+            <button class="filter-btn" data-filter="pink">Category 2</button>
+        </div>
+        <!-- Your mixable items -->
+        <div class="items-list">
+            <div class="mix purple">Item 1</div>
+            <div class="mix pink">Item 2</div>
+            <div class="mix purple">Item 3</div>
+            <div class="mix pink">Item 4</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            var filterButtons = document.querySelectorAll('.filter-btn');
+            var mixItems = document.querySelectorAll('.mix');
+
+            filterButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var filterValue = this.getAttribute('data-filter');
+
+                    mixItems.forEach(function (item) {
+                        var itemCategories = item.classList;
+                        if (filterValue === 'all' || itemCategories.contains(filterValue)) {
+                            item.classList.remove('hide');
+                            item.classList.remove('hide2');
+                        } else {
+                            item.classList.add('hide');
+                        }
+                    });
+                });
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
